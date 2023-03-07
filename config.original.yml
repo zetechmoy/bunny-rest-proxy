@@ -1,0 +1,46 @@
+---
+publishers:
+  - queueName: demo
+    contentType: binary
+    confirm: true
+  - queueName: demo-json
+    contentType: json
+    confirm: true
+    schema:
+      properties:
+        id:
+          type: string
+        eventStatus:
+          enum:
+            - IN_PROGRESS
+            - PENDING
+            - PLANNED
+      optionalProperties:
+        notes:
+          type: string
+  - queueName: auth
+    contentType: json
+    identities:
+      - Bob
+
+consumers:
+  - queueName: demo
+  - queueName: demo-json
+  - queueName: auth
+    identities:
+      - Alice
+
+subscribers:
+  - queueName: demo
+    target: http://localhost:5555/target
+    prefetch: 1
+    backoffStrategy: linear
+    retries: 4
+    retryDelay: 1000
+    deadLetterPolicy: requeue
+
+identities:
+  - name: Bob
+    # without a token provided, BRP will attempt to read it from BRP_TOKEN_Bob environment variable
+  - name: Alice
+    token: SuperSecretToken123

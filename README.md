@@ -30,3 +30,5 @@ While RabbitMQ is commonly used as a means of asynchronous communication between
 - Pushing messages to defined subscribers over HTTP ensuring **at-least-once** delivery semantics with configurable backoff strategies and dead letter policies
 - Consuming messages from the queue HTTP GET requests
 - Straight-forward configuration based on a single YAML file
+
+

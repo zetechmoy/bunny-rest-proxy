@@ -8,7 +8,7 @@ import { MetricsCollector } from './metrics/metrics-collector';
 
 async function start() {
     const envConfig = buildEnvConfig(process.env as EnvValues);
-    const configFile = fs.readFileSync(path.resolve(__dirname, '../config.yml'), 'utf8');
+    const configFile = fs.readFileSync(envConfig.configPath, 'utf8');
     const yamlConfig = buildYamlConfig(configFile);
     const metricsServer = buildMetricsServer();
     const metricsCollector = new MetricsCollector(metricsServer);
