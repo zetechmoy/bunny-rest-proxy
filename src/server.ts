@@ -49,11 +49,12 @@ function buildApp(
         logger: {
             prettyPrint: envConfig.prettyPrint
                 ? {
-                      translateTime: 'HH:MM:ss Z'
-                  }
+                    translateTime: 'HH:MM:ss Z'
+                }
                 : false,
             level: envConfig.logLevel
-        }
+        },
+        pluginTimeout: 30000
     });
 
     app.decorate('publishers', [] as Array<Publisher>);
